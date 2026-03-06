@@ -1,3 +1,4 @@
+import io
 import logging
 import re
 import requests
@@ -102,9 +103,26 @@ def handle_changes(message: types.Message):
         )
         return
 
-    bot.send_message(
-        message.chat.id,
-        f"Актуальные изменения расписания (PDF):\n{url}",
+    # Скачиваем PDF сами, чтобы избежать кэша Telegram
+    try:
+        resp = requests.get(url, timeout=15, verify=False)
+        resp.raise_for_status()
+    except Exception as e:
+        logger.error("Ошибка при скачивании PDF изменений: %s", e)
+        bot.send_message(
+            message.chat.id,
+            f"Не удалось скачать файл изменений расписания:\n{e}",
+        )
+        return
+
+    data = io.BytesIO(resp.content)
+    data.name = "Izmeneniya_raspisaniya.pdf"
+    data.seek(0)
+
+    bot.send_document(
+        chat_id=message.chat.id,
+        data=data,
+        caption=f"Актуальные изменения расписания (PDF):\n{url}",
     )
 
 
@@ -131,3 +149,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
