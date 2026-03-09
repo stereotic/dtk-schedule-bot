@@ -7,7 +7,7 @@ from telebot import types
 # ===== НАСТРОЙКИ =====
 BOT_TOKEN = "8676827395:AAHCXZPoSKp3tWKMlZi-4PdkzVh4nMcGIiw"
 
-URL_WEEK1 = "https://dimtex73.gosuslugi.ru/svedeniya-ob-organizatsii/dokumenty/raspisanie-1-korpus-1-nedelya.html"
+URL_WEEK1 = "https://dimtex73.gosuslugi.ru/netcat_files/22/4/N_1nedelya.pdf"
 URL_WEEK2 = "https://dimtex73.gosuslugi.ru/netcat_files/22/4/S_2nedelya.pdf"
 URL_BELLS = "https://dimtex73.gosuslugi.ru/netcat_files/22/4/zvonki.pdf"
 URL_EXAMS = "https://dimtex73.gosuslugi.ru/netcat_files/22/4/S_ekz2.pdf"
@@ -131,3 +131,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
